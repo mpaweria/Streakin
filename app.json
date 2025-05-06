@@ -36,6 +36,10 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "notification": {
+      "icon": "./assets/notification-icon.png", 
+      "color": "#ffffff"
     }
   }
 }

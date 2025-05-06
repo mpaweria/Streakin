@@ -1,0 +1,18 @@
+export const theme = {
+  primary: '#8A7FF7',
+  primaryLight: '#E8E4FF',
+  primaryDark: '#5D54A3',
+  background: '#FAF9FF',
+  cardBackground: '#FFFFFF',
+  textPrimary: '#1C1C1E',
+  textSecondary: '#666666',
+  border: '#E0E0E0',
+  borderLight: '#EDEDED',
+  accentPositive: '#4CAF50',
+  accentNegative: '#FF3B30',
+  disabledBackground: '#D1D1D6',
+  disabledText: '#8E8E93',
+  white: '#FFFFFF',
+  black: '#000000',
+  modalOverlay: 'rgba(0,0,0,0.5)',
+};
