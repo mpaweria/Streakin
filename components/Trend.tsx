@@ -1,56 +1,58 @@
-import React from 'react';
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
-import { BarChart } from 'react-native-chart-kit';
-import dayjs from 'dayjs';
+import React from 'react'
+import { View, Text, StyleSheet, Dimensions } from 'react-native'
+import { BarChart } from 'react-native-chart-kit'
+import dayjs from 'dayjs'
 
 interface TrendProps {
   habit: {
-    history: { date: string }[];
-  };
+    history: { date: string }[]
+  }
 }
 
-const screenWidth = Dimensions.get('window').width;
+const screenWidth = Dimensions.get('window').width
 
 const Trend: React.FC<TrendProps> = ({ habit }) => {
   const getTrendData = () => {
-    const doneDays = new Set(habit.history.map(entry => dayjs(entry.date).format('YYYY-MM-DD')));
-    const today = dayjs();
-    const startOfMonth = today.startOf('month');
-    const endOfMonth = today.endOf('month');
-    
-    const labels: string[] = [];
-    const data: number[] = [];
-    
-    let streak = 0;
-    
+    const doneDays = new Set(habit.history.map((entry) => dayjs(entry.date).format('YYYY-MM-DD')))
+    const today = dayjs()
+    const startOfMonth = today.startOf('month')
+    const endOfMonth = today.endOf('month')
+
+    const labels: string[] = []
+    const data: number[] = []
+
+    let streak = 0
+
     for (let d = startOfMonth; d.isBefore(endOfMonth.add(1, 'day')); d = d.add(1, 'day')) {
-      const dateStr = d.format('YYYY-MM-DD');
-      const dayOfMonth = d.date();
-      
+      const dateStr = d.format('YYYY-MM-DD')
+      const dayOfMonth = d.date()
+
       // Show only specific day labels
-      labels.push(dayOfMonth === 1 || dayOfMonth === 15 || dayOfMonth === 30 ? dayOfMonth.toString() : '');
-      
+      labels.push(
+        dayOfMonth === 1 || dayOfMonth === 15 || dayOfMonth === 30 ? dayOfMonth.toString() : ''
+      )
+
       if (doneDays.has(dateStr)) {
-        streak += 1;
+        streak += 1
       } else {
-        streak = 0;
+        streak = 0
       }
-      
-      data.push(streak);
+
+      data.push(streak)
     }
-    
+
     return {
       labels,
       datasets: [{ data }],
-    };
-  };
-  
-  const chartData = getTrendData();
-  
-  if (!chartData.datasets[0].data.length) {
-    return <Text style={styles.emptyText}>No trend data yet</Text>;
+    }
   }
-  
+
+  const chartData = getTrendData()
+
+  if (!chartData.datasets[0].data.length) {
+    return <Text style={styles.emptyText}>No trend data yet</Text>
+  }
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Daily Streak Trend</Text>
@@ -72,7 +74,7 @@ const Trend: React.FC<TrendProps> = ({ habit }) => {
           barPercentage: 0.25,
           barRadius: 3,
           formatYLabel: (yValue) => {
-            return '';
+            return ''
           },
           propsForLabels: {
             fontSize: 7,
@@ -88,8 +90,8 @@ const Trend: React.FC<TrendProps> = ({ habit }) => {
       />
       <Text style={styles.subtitle}>Days of Month</Text>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -126,6 +128,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#999',
   },
-});
+})
 
-export default Trend;
+export default Trend

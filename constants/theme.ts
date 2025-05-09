@@ -12,7 +12,10 @@ export const theme = {
   accentNegative: '#FF3B30',
   disabledBackground: '#D1D1D6',
   disabledText: '#8E8E93',
+  disabledIcon: '#F2F2F2',
+  disabledName: '#C9C9C9',
   white: '#FFFFFF',
   black: '#000000',
+  gray: 'gray',
   modalOverlay: 'rgba(0,0,0,0.5)',
-};
+}
